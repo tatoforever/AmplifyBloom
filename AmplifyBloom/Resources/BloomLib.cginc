@@ -51,7 +51,7 @@ inline float4 CustomObjectToClipPos( in float3 pos )
 #if UNITY_VERSION >= 540
 	return UnityObjectToClipPos( pos );
 #else
-	return mul( UNITY_MATRIX_VP, mul( _Object2World, float4( pos, 1.0 ) ) );
+	return mul( UNITY_MATRIX_VP, mul( unity_ObjectToWorld, float4( pos, 1.0 ) ) );
 #endif
 }
 
