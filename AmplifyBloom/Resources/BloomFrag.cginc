@@ -4,7 +4,6 @@
 #ifndef AMPLIFY_BLOOMFRAG_INCLUDED
 #define AMPLIFY_BLOOMFRAG_INCLUDED
 
-#include "UnityCG.cginc"
 #include "BloomSRPTools.hlsl"
 
 ASEDefineDepthTexture ( _CameraDepthTexture );

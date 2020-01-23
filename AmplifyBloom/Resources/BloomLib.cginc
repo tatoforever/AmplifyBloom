@@ -4,9 +4,7 @@
 #ifndef AMPLIFY_BLOOMLIB_INCLUDED
 #define AMPLIFY_BLOOMLIB_INCLUDED
 
-#include "UnityCG.cginc"
 #include "BloomSRPTools.hlsl"
-
 
 uniform half4		_AnamorphicGlareWeights0;
 uniform half4		_AnamorphicGlareWeights1;

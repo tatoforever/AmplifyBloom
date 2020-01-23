@@ -15,6 +15,9 @@
 #define ASETexParams(textureName) TEXTURE2D_X_PARAM(textureName)
 #else
 //STANDARD
+
+#include "UnityCG.cginc"
+
 #define ASETexDeclare(textureName) sampler2D textureName
 #define ASETexPass(textureName) textureName
 #define ASETexArgs(textureName) sampler2D textureName

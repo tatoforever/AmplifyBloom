@@ -23,9 +23,8 @@ Shader "Hidden/BloomFinal"
 		#pragma fragment frag
 		#pragma target 3.0
 
-		#include "UnityCG.cginc"
-		#include "BloomSRPTools.hlsl"
 		#include "BloomLib.cginc"
+
 		#pragma multi_compile __  AB_HIGH_PRECISION
 		uniform half4		_MainTex_TexelSize;// x - 1/width y - 1/height z- width w - height
 

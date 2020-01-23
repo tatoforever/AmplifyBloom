@@ -20,7 +20,6 @@ Shader "Hidden/AmplifyBloom"
 	CGINCLUDE
 		#pragma target 3.0
 
-		#include "UnityCG.cginc"
 		#include "BloomLib.cginc"
 		#pragma multi_compile __ AB_HIGH_PRECISION
 
