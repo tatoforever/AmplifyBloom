@@ -306,6 +306,17 @@ namespace AmplifyBloom
 				m_lensFlare = null;
 			}
 
+			if ( m_bloomMaterial != null )
+			{
+				DestroyImmediate( m_bloomMaterial );
+				m_bloomMaterial = null;
+			}
+
+			if ( m_finalCompositionMaterial != null )
+			{
+				DestroyImmediate( m_finalCompositionMaterial );
+				m_finalCompositionMaterial = null;
+			}
 		}
 
 		void ApplyGaussianBlur( RenderTexture renderTexture, int amount, float radius = 1.0f, bool applyTemporal = false )
