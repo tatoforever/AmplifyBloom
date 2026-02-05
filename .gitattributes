@@ -1,5 +1,6 @@
 # Unity
 *.unity filter=lfs diff=lfs merge=lfs -text
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
 
 # Fonts
 *.ttf filter=lfs diff=lfs merge=lfs -text
@@ -56,4 +57,3 @@
 # Binaries
 *.dll filter=lfs diff=lfs merge=lfs -text
 *.exe filter=lfs diff=lfs merge=lfs -text
-*.unitypackage filter=lfs diff=lfs merge=lfs -text
