@@ -44,21 +44,17 @@ namespace AmplifyBloom
 		void Awake()
 		{
 			_camera = Camera.main;
-#if UNITY_EDITOR
+		#if UNITY_EDITOR
 			if ( PlayerSettings.colorSpace == ColorSpace.Gamma )
 			{
 				Debug.LogWarning("Detected Gamma Color Space. For better visual results please switch to Linear Color Space by going to Player Settings > Other Settings > Rendering Path > Color Space > Linear.");
 			}
 
-		#if UNITY_5_6_OR_NEWER
 			if ( !_camera.allowHDR )
-		#else
-			if ( !_camera.hdr )
-		#endif
 			{
 				Debug.LogWarning( "Detected LDR on camera. For better visual results please switch to HDR by hitting the HDR toggle on the Camera component." );
 			}
-#endif
+		#endif
 			_amplifyBloomEffect = _camera.GetComponent<AmplifyBloomEffect>();
 
 			BloomToggle.isOn = _amplifyBloomEffect.enabled;

@@ -195,10 +195,10 @@ namespace AmplifyBloom
 		private Transform m_cameraTransform;
 		private Matrix4x4 m_starburstMat;
 
-		private Shader m_bloomShader;
-		private Material m_bloomMaterial;
+		[SerializeField] private Shader m_bloomShader;
+		[SerializeField] private Shader m_finalCompositionShader;
 
-		private Shader m_finalCompositionShader;
+		private Material m_bloomMaterial;
 		private Material m_finalCompositionMaterial;
 
 		private RenderTexture m_tempFilterBuffer;
@@ -237,7 +237,6 @@ namespace AmplifyBloom
 			if ( m_temporalFilteringCurve == null )
 				m_temporalFilteringCurve = new AnimationCurve( new Keyframe( 0, 0 ), new Keyframe( 1, 0.999f ) );
 
-			m_bloomShader = Shader.Find( "Hidden/AmplifyBloom" );
 			if ( m_bloomShader != null )
 			{
 				m_bloomMaterial = new Material( m_bloomShader );
@@ -249,7 +248,6 @@ namespace AmplifyBloom
 				gameObject.SetActive( false );
 			}
 
-			m_finalCompositionShader = Shader.Find( "Hidden/BloomFinal" );
 			if ( m_finalCompositionShader != null )
 			{
 				m_finalCompositionMaterial = new Material( m_finalCompositionShader );
@@ -283,7 +281,7 @@ namespace AmplifyBloom
 			m_camera = GetComponent<Camera>();
 			m_camera.depthTextureMode |= DepthTextureMode.Depth;
 			m_lensFlare.CreateLUTexture();
-			
+
 		}
 
 		void OnDestroy()

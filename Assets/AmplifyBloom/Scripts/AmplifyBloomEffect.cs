@@ -7,11 +7,9 @@ using UnityEngine;
 
 namespace AmplifyBloom
 {
-#if UNITY_5_4_OR_NEWER
 	[ImageEffectAllowedInSceneView]
-#endif
 	[ExecuteInEditMode]
-	[System.Serializable]
+	[Serializable]
 	[RequireComponent( typeof( Camera ) )]
 	[AddComponentMenu( "Image Effects/Amplify Bloom")]
 	public sealed class AmplifyBloomEffect : AmplifyBloomBase { }

@@ -1,15 +1,9 @@
 // Amplify Bloom - Advanced Bloom Post-Effect for Unity
 // Copyright (c) Amplify Creations, Lda <info@amplify.pt>
 
-#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2
-#define UNITY_PRE_5_3
-#endif
-
 using UnityEngine;
 using UnityEditor;
-#if !UNITY_PRE_5_3
 using UnityEditor.SceneManagement;
-#endif
 
 namespace AmplifyBloom
 {
@@ -602,12 +596,10 @@ namespace AmplifyBloom
 				if ( EditorGUI.EndChangeCheck() )
 				{
 					EditorUtility.SetDirty( bloom );
-#if !UNITY_PRE_5_3
 					if ( !Application.isPlaying )
 					{
 						EditorSceneManager.MarkSceneDirty( bloom.gameObject.scene );
 					}
-#endif
 				}
 			}
 			GUILayout.EndVertical();

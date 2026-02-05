@@ -8,7 +8,7 @@ namespace AmplifyBloom
 {
 	public class About : EditorWindow
 	{
-		private const string AboutImagePath = "AmplifyBloom/Textures/About.png";
+		private const string AboutImageGUID = "418cb17cf3bdd854a8221f6b6c430702";
 		private Vector2 m_scrollPosition = Vector2.zero;
 		private Texture2D m_aboutImage;
 
@@ -23,33 +23,7 @@ namespace AmplifyBloom
 
 		public void OnFocus()
 		{
-			string[] guids = AssetDatabase.FindAssets( "About t:Texture" );
-			string asset = "";
 
-			foreach ( string guid in guids )
-			{
-				string path = AssetDatabase.GUIDToAssetPath( guid );
-				if ( path.EndsWith( AboutImagePath ) )
-				{
-					asset = path;
-					break;
-				}
-			}
-
-			if ( !string.IsNullOrEmpty( asset ) )
-			{
-				TextureImporter importer = AssetImporter.GetAtPath( asset ) as TextureImporter;
-
-				if ( importer.textureType != TextureImporterType.GUI )
-				{
-					importer.textureType = TextureImporterType.GUI;
-					AssetDatabase.ImportAsset( asset );
-				}
-
-				m_aboutImage = AssetDatabase.LoadAssetAtPath( asset, typeof( Texture2D ) ) as Texture2D;
-			}
-			else
-				Debug.LogWarning( "[AmplifyBloom] About image not found at " + AboutImagePath );
 		}
 
 		public void OnGUI()
@@ -62,10 +36,21 @@ namespace AmplifyBloom
 
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
+
+			if ( m_aboutImage == null )
+			{
+				string aboutImagePath = AssetDatabase.GUIDToAssetPath( AboutImageGUID );
+				if ( !string.IsNullOrEmpty( aboutImagePath ) )
+				{
+					m_aboutImage = AssetDatabase.LoadAssetAtPath( aboutImagePath, typeof( Texture2D ) ) as Texture2D;
+				}
+			}
 			GUILayout.Box( m_aboutImage, GUIStyle.none );
 
 			if ( Event.current.type == EventType.MouseUp && GUILayoutUtility.GetLastRect().Contains( Event.current.mousePosition ) )
-				Application.OpenURL( "http://www.amplify.pt" );
+			{
+				Application.OpenURL( "https://www.amplify.pt" );
+			}
 
 			GUILayout.FlexibleSpace();
 			GUILayout.EndHorizontal();

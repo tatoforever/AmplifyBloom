@@ -4,7 +4,7 @@
 #ifndef AMPLIFY_BLOOMLIB_INCLUDED
 #define AMPLIFY_BLOOMLIB_INCLUDED
 
-#include "BloomSRPTools.hlsl"
+#include "BloomBiRP.hlsl"
 
 uniform half4		_AnamorphicGlareWeights0;
 uniform half4		_AnamorphicGlareWeights1;
@@ -47,11 +47,7 @@ half4 _MainTex_ST;
 
 inline float4 CustomObjectToClipPos( in float3 pos )
 {
-#if UNITY_VERSION >= 540
 	return UnityObjectToClipPos( pos );
-#else
-	return mul( UNITY_MATRIX_VP, mul( unity_ObjectToWorld, float4( pos, 1.0 ) ) );
-#endif
 }
 
 // Enabling Stereo adjustment in versions prior to 4.5
