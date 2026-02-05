@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AmplifyBloom/Samples/Demo/Demo.unity
+    guid: 7a79888e414cb434e9c0f3c2145157e3
   m_configObjects: {}
