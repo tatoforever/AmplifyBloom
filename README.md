@@ -32,7 +32,7 @@
 
   It employed industry-grade techniques to mitigate flickering like sub-pixel sampling estimation and temporal filtering:
 
-<p align="center"><img decoding="async" data-src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" alt="" src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" class=" lazyloaded"></p>
+<p align="center"><img src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" width="800" /></p>
 
   This package was for sale on the Unity Asset Store between 2016 and 2019 with an average rating of 5 stars. It is now deprecated and we no longer support it, so we are releasing it to open-source world under the MIT License.
 	
