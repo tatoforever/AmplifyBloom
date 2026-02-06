@@ -10,54 +10,48 @@
  
   [Amplify LUT Pack](https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-lut-pack-50070?aid=1011lPwI&pubref=GitHub) - 200+ LUTs for Amplify Color and Unity PPS
  
-# Amplify Occlusion  
+# Amplify Bloom  
   
-  Amplify Occlusion was the first industry-grade, full-featured screen-space ambient occlusion 
-  solution to be released on the Asset Store in 2016, at a time when Unity itself lacked a decent
-  SSAO implementation. It managed to remain the fastest SSAO solution for Unity released a built-in 
-  implementation of "Multi-scale Volumetric Occlusion" as part of their Post-processing Stack.
+  Amplify Bloom brought high-end professional post-process bloom effects to the Asset Store. It was packed with high-quality features and was even nominated for the Unite Awards 2016 in for Asset Store Award and Golden Cube categories.
   
-  <p align="center"><img src="http://files.amplify.pt/RT/2021/11/oc_1.jpg"></p>
+<p align="center"><img width="800" height="380" alt="image" src="https://github.com/user-attachments/assets/b45293e3-c894-4e03-a10a-336c12396da1" /></p>
 
-  The first version of this plugin was using a technique known as HBAO, or "Horizon-Based
-  Ambient Occlusion", based on a 2008 paper titled "Image-Space Horizon-Based Ambient Occlusion" 
-  by Louis Bavoil, Miguel Sainz and Rouslan Dimitrov.  
-
-  The second version, which improved upon the first iteration on both quality and performance was
-  using a technique known as GTAO, or "Ground-Truth Ambient Occlusion", based on a 2016 paper titled 
-  "Practical Realtime Strategies for Accurate Indirect Occlusion" by Jorge Jimenez, Xian-Chun Wu, 
-  Angelo Pesce and Adrian Jarabo.
+  This solution was based on a technique commonly used in AAA games, focused on reducing flickering/firefly artifacts and broad performance scalability, across mobile, consoles and PC platforms.
   
-  <p align="center"><img src="http://files.amplify.pt/RT/2021/11/oc_2.jpg"></p>  
+<p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/24699d10-88c2-4a2d-8677-df29b5abc51a" /></p>
 
-  This package was for sale on the Unity Asset Store between 2016 and 2019 with an
-  average rating of 5 stars. It is now deprecated and we no longer support it, so we 
-  are releasing it to open-source world under the MIT License.
+  In addition to high-quality Bloom, the package includes a comprehensive collection of extra features such as Flexible Temporal Filtering, Procedural Pseudo-Flares, Bokeh Filter, Anamorphic Glare, Lens Dirt and Starburst.
+
+<p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/3432879b-7a30-4b32-9d7e-b1cee2cd842b" />
+</p>
+
+  It was suitable for 3D and 2D applications, and the ideal fast performing solution for nearly any kind of project.
+
+<p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/878d8bfc-0c34-4328-81f2-b5789d9b6c44" />
+</p>
+
+  It employed industry-grade techniques to mitigate flickering like sub-pixel sampling estimation and temporal filtering:
+
+<p align="center"><img src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" width="800" /></p>
+
+  This package was for sale on the Unity Asset Store between 2016 and 2019 with an average rating of 5 stars. It is now deprecated and we no longer support it, so we are releasing it to open-source world under the MIT License.
 	
 # Description
 
-  Amplify Occlusion sets out to deliver a new industry standard for fast, high-quality 
-  Screen-Space Ambient Occlusion in Unity; delivering state of the art Ground Truth Ambient 
-  Occlusion (GTAO) and bringing quality and accuracy closer to traditional raytracing. A true 
-  all-in-one package, providing a highly-robust and efficient way to simulate ambient occlusion 
-  and contact shadowing. Now you can attenuate reflections in occluded areas, make objects 
-  actually connect to the world and add real depth to your scenes with minimal effort.
+  Amplify Bloom brings industry-level post-process bloom effects into your project. Packed with high quality features that can be turned on/off and completely tweaked to fulfil your project needs.
   
 # Features
 
-  * Ground Truth Ambient Occlusion
-  * PS4, Xbox One and Switch compatible
-  * Single and Multi-pass VR support
-  * Up to 2X faster than Amplify Occlusion 1.0
-  * Revamped Spatial and Temporal Filters
-  * Dramatically Higher-Quality
-  * Higher Flexibility
-  * Under 1 ms on a mid-range GPU at Full HD
-  * Accurate and fast-performing
-  * Deferred and Forward Rendering
-  * PBR compatible injection mode
-  * Superior occlusion approximation
-  * Extensive blur and intensity controls
+  * High-quality
+  * High-performance
+  * Highly tweakable
+  * Bokeh filtering
+  * Pseudo Lens Flare with Ghosts and Halos
+  * Anamorphic Glare
+  * Lens Dirt
+  * Lens Starburst
+  * Temporal filtering
+  * Flickering mitigation
   
 # Supported Platforms
 
@@ -67,62 +61,19 @@
 
   Minimum
 
-    Unity 5.6.0+
+    Unity 2019.4 LTS
 
 # Quick Guide
 
-  Standard How-to
+  Amplify Bloom can be easily set on your project by selecting your game camera object and
+  doing one of the following steps:
 
-   1) Select and apply “Image Effects/Amplify Occlusion” to your main camera.
-  
-   2) Adjust the Intensity and Radius.
-  
-   3) Adjust the blur values until you are satisfied with the results.
- 
-  Scriptable Render Pipeline How-to
+  1) Go to 'Component/Image Effects' menu and select the 'Amplify Bloom' option. Note that
+     you need to have a game object selected with a camera component, if not present it will
+	 create one
 
-   1) Install packages dependencies:
-     Window -> Package Manager, Advanced -> Show preview packages
-     Select and install:
-      
-      Render-Pipelines.Core
-      Render-Pipelines.High-Definition
-      Render-Pipelines.Lightweight
-      Post Processing
-
-   2) Go to "Assets/Import Package/Custom Package..." and select
-      "Assets/AmplifyOcclusion/Packages/PostProcessingSRP_XXX.unitypackage"
-
-   3) How to set up an SRP project example:
-
-# Note that SRP is not officially supported, use at your own risk.
-
-   3.a) Create SRP asset via Assets menu:
-   
-	   Create/Rendering/High Definition Render Pipeline Asset
-
-	   OR
-
-	   Create/Rendering/Lightweight Render Pipeline Asset
-  
-   3.b) Set Edit->ProjectSettings/Player/Other settings/ColorSpace to Linear (necessary for HD SRP)
-  
-   3.c) Edit->ProjectSettings/Graphics/Scriptable Render Pipeline Settings: select the RenderPipelineAsset 
-        created in 3.a)
-  
-   3.d) On Camera, using Lightweight Render Pipeline, disable MSAA
-  
-   3.e) Camera->Add Component->Post-Process Layer
-  
-   3.f) Camera->Post-Process Layer->Layer: Everything (as example)
-  
-   3.g) Camera->Add Component->Post-Process Volume
-  
-   3.h) Camera->Post-Process Volume->Is Global: check (as example)
-  
-   3.i) Camera->Post-Process Volume->Profile: New
-  
-   3.j) Camera->Post-Process Volume->Add effect... AmplifyCreations->AmplifyOcclusion
+  2) Hit 'Add Component' on the camera Inspector View, type 'Amplify Bloom' on the search
+     box and select the result
 
 # Documentation
 
@@ -132,8 +83,15 @@
 
 # Acknowledgements
 
-  AO v2.0 was developed by the talented Mário Luzeiro:
+  Originally developed by the talented Ricardo Aguiar:
   
-    https://pt.linkedin.com/in/mluzeiro
-    https://twitter.com/mluzeiro
+    https://www.linkedin.com/in/ricardoaguiar/
+  
+  This project awas based on previous work by Victor Martins:
+  
+    http://pixelnerve.com/v/
+  
+  HDR Cubemap from No Emotion HDRs website:
+  
+    http://noemotionhdrs.net/
     
