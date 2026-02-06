@@ -17,7 +17,7 @@ Description
 
 Features
 
-  * High quality bloom
+  * High-quality
   * High-performance
   * Highly tweakable
   * Bokeh filtering
@@ -25,6 +25,8 @@ Features
   * Anamorphic Glare
   * Lens Dirt
   * Lens Starburst
+  * Temporal filtering
+  * Flickering mitigation
 
 Supported Platforms
 
