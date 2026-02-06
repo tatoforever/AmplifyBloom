@@ -16,17 +16,21 @@
   
 <p align="center"><img width="800" height="380" alt="image" src="https://github.com/user-attachments/assets/b45293e3-c894-4e03-a10a-336c12396da1" /></p>
 
-  This solution was based on a technique commonly used in AAA games, focused on reducing flickering/firefly artifacts. In addition to high-quality Bloom, the package includes a comprehensive collection of extra features such as Flexible Temporal Filtering, Procedural Pseudo-Flares, Bokeh Filter, Anamorphic Glare, Lens Dirt and Starburst. It was suitable for 3D and 2D applications, and the ideal fast performing solution for nearly any kind of project.
+  This solution was based on a technique commonly used in AAA games, focused on reducing flickering/firefly artifacts and broad performance scalability, across mobile, consoles and PC platforms.
   
 <p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/24699d10-88c2-4a2d-8677-df29b5abc51a" /></p>
+
+  In addition to high-quality Bloom, the package includes a comprehensive collection of extra features such as Flexible Temporal Filtering, Procedural Pseudo-Flares, Bokeh Filter, Anamorphic Glare, Lens Dirt and Starburst.
 
 <p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/3432879b-7a30-4b32-9d7e-b1cee2cd842b" />
 </p>
 
+  It was suitable for 3D and 2D applications, and the ideal fast performing solution for nearly any kind of project.
+
 <p align="center"><img width="800" height="250" alt="image" src="https://github.com/user-attachments/assets/878d8bfc-0c34-4328-81f2-b5789d9b6c44" />
 </p>
 
-  It also employed industry-grade techniques to mitigate flickering like sub-pixel sampling estimation and temporal filtering:
+  It employed industry-grade techniques to mitigate flickering like sub-pixel sampling estimation and temporal filtering:
 
 <p align="center"><img decoding="async" data-src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" alt="" src="https://media.giphy.com/media/3oxRmDSEUIrCxhHz7G/giphy.gif" class=" lazyloaded"></p>
 
@@ -79,6 +83,10 @@
 
 # Acknowledgements
 
+  Originally developed by the talented Ricardo Aguiar:
+  
+    https://www.linkedin.com/in/ricardoaguiar/
+  
   This project awas based on previous work by Victor Martins:
   
     http://pixelnerve.com/v/
