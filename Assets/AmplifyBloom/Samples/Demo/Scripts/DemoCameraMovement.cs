@@ -41,7 +41,6 @@ namespace AmplifyBloom
 				m_gamePadMode = true;
 			}
 #endif
-
 		}
 
 		void Update()
@@ -66,7 +65,7 @@ namespace AmplifyBloom
 			}
 			else
 			{
-				if ( Input.GetMouseButton( 0 ) && !EventSystem.current.IsPointerOverGameObject() )
+				if ( Input.GetMouseButton( 0 ) && !DemoUISlider.IsAnyDragging() )
 				{
 					ChangeYaw( Input.GetAxisRaw( X_AXIS_KEYBOARD ) * yawSpeed );
 					ChangePitch( -Input.GetAxisRaw( Y_AXIS_KEYBOARD ) * pitchSpeed );

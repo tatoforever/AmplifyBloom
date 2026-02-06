@@ -235,6 +235,9 @@ namespace AmplifyBloom
 				_amplifyBloomEffect.enabled = BloomToggle.isOn = !BloomToggle.isOn;
 			}
 
+
+			TemporalFilter.interactable =
+			UpscaleType.interactable =
 			BokehToggle.interactable =
 			LensFlareToggle.interactable =
 			LensGlareToggle.interactable =
@@ -243,6 +246,7 @@ namespace AmplifyBloom
 			ThresholdSlider.interactable =
 			DownscaleAmountSlider.interactable =
 			HighPrecision.interactable =
+			ThresholdSizeSlider.interactable =
 			IntensitySlider.interactable = BloomToggle.isOn;
 
 			if ( BloomToggle.isOn )
