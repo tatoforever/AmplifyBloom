@@ -59,8 +59,6 @@
 	
 # Software Requirements
 
-  Minimum
-
     Unity 2021.3 LTS, or higher
 
 # Quick Guide
