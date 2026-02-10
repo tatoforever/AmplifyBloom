@@ -9,9 +9,12 @@ using UnityEditor.SceneManagement;
 namespace AmplifyBloom
 {
 	[Serializable]
-	[CustomEditor( typeof( AmplifyBloomEffect ) )]
+	[CustomEditor( typeof( AmplifyBloom ) )]
 	public class AmplifyBloomEffectEditor : Editor
 	{
+		private const string DirtHighContrastTextureGUID = "7825356d1f1778140ad12b5dfe6b4d41";
+		private const string StarburstTextureGUID = "c2216a0fed1c98742b826a85db28021c";
+
 		private const string IntensityStr = "Intensity";
 		private const string AdvancedSettingsStr = "Advanced Settings";
 		private Rect TemporalCurveRanges = new Rect( 0, 0, 1, 0.999f );
@@ -146,11 +149,11 @@ namespace AmplifyBloom
 		private GUIStyle m_mainLabelStyle;
 		private GUIStyle m_disabledToggleStyle;
 
-
 		private GUIContent[] m_bloomWeightsLabelGCArr;
+
 		void Awake()
 		{
-			m_bloomWeightsLabelGCArr = new GUIContent[ AmplifyBloomEffect.MaxDownscales ];
+			m_bloomWeightsLabelGCArr = new GUIContent[ AmplifyBloom.MaxDownscales ];
 			for ( int i = 0; i < m_bloomWeightsLabelGCArr.Length; i++ )
 			{
 				m_bloomWeightsLabelGCArr[ i ] = new GUIContent( "Mip " + ( i + 1 ), m_bloomWeightsFoldoutGC.tooltip );
@@ -175,21 +178,21 @@ namespace AmplifyBloom
 			m_toggleStyle = new GUIStyle( EditorStyles.toggle );
 			m_toggleStyle.fontStyle = FontStyle.Bold;
 
-			m_lensWeightGCArr = new GUIContent[ AmplifyBloomEffect.MaxDownscales ];
+			m_lensWeightGCArr = new GUIContent[ AmplifyBloom.MaxDownscales ];
 			for ( int i = 0; i < m_lensWeightGCArr.Length; i++ )
 			{
 				m_lensWeightGCArr[ i ] = new GUIContent( m_lensWeightGC );
 				m_lensWeightGCArr[ i ].text += ( i + 1 ).ToString();
 			}
-			AmplifyBloomEffect bloom = ( AmplifyBloomEffect ) target;
+
+			var bloom = target as AmplifyBloom;
 			if ( bloom.LensDirtTexture == null )
 			{
-				bloom.LensDirtTexture = AssetDatabase.LoadAssetAtPath<Texture>( "Assets/AmplifyBloom/Samples/Textures/Dirt/DirtHighContrast.png" );
+				bloom.LensDirtTexture = AssetDatabase.LoadAssetAtPath<Texture>( AssetDatabase.GUIDToAssetPath( DirtHighContrastTextureGUID ) );
 			}
-
 			if ( bloom.LensStardurstTex == null )
 			{
-				bloom.LensStardurstTex = AssetDatabase.LoadAssetAtPath<Texture>( "Assets/AmplifyBloom/Samples/Textures/Starburst/Starburst.png" );
+				bloom.LensStardurstTex = AssetDatabase.LoadAssetAtPath<Texture>( AssetDatabase.GUIDToAssetPath( StarburstTextureGUID ) );
 			}
 		}
 
@@ -253,7 +256,7 @@ namespace AmplifyBloom
 		override public void OnInspectorGUI()
 		{
 			Undo.RecordObject( target, "AmplifyBloomInspector" );
-			AmplifyBloomEffect bloom = ( AmplifyBloomEffect ) target;
+			var bloom = target as AmplifyBloom;
 			SerializedObject bloomObj = new SerializedObject( bloom );
 			GUILayout.BeginVertical();
 			{
@@ -309,7 +312,7 @@ namespace AmplifyBloom
 						if ( m_mipSettingsFoldout )
 						{
 							EditorGUI.indentLevel++;
-							bloom.BloomDownsampleCount = EditorGUILayout.IntSlider( m_downscaleAmountGC, bloom.BloomDownsampleCount, AmplifyBloomEffect.MinDownscales, bloom.SoftMaxdownscales );
+							bloom.BloomDownsampleCount = EditorGUILayout.IntSlider( m_downscaleAmountGC, bloom.BloomDownsampleCount, AmplifyBloom.MinDownscales, bloom.SoftMaxdownscales );
 							bool guiState = bloom.BloomDownsampleCount != 0;
 
 							GUI.enabled = ( bloom.UpscaleQuality == UpscaleQualityEnum.Realistic ) && guiState;
@@ -349,7 +352,7 @@ namespace AmplifyBloom
 								GUILayout.Space( -30 );
 
 								bloom.GaussianSteps[ i ] = EditorGUILayout.IntField( string.Empty, bloom.GaussianSteps[ i ], GUILayout.MinWidth( blurStepSize ) );
-								bloom.GaussianSteps[ i ] = Mathf.Clamp( bloom.GaussianSteps[ i ], 0, AmplifyBloomEffect.MaxGaussian );
+								bloom.GaussianSteps[ i ] = Mathf.Clamp( bloom.GaussianSteps[ i ], 0, AmplifyBloom.MaxGaussian );
 
 								GUILayout.Space( -27 );
 								bloom.GaussianRadius[ i ] = EditorGUILayout.FloatField( string.Empty, bloom.GaussianRadius[ i ], GUILayout.MinWidth( blurRadiusSize ) );
@@ -497,7 +500,7 @@ namespace AmplifyBloom
 						if ( m_ghostsFoldout )
 						{
 							bloom.LensFlareInstance.LensFlareNormalizedGhostsIntensity = EditorGUILayout.FloatField( m_lensFlareGhostsInstensityGC, bloom.LensFlareInstance.LensFlareNormalizedGhostsIntensity );
-							bloom.LensFlareInstance.LensFlareGhostAmount = EditorGUILayout.IntSlider( m_lensFlareGhostAmountGC, bloom.LensFlareInstance.LensFlareGhostAmount, 0, AmplifyBloomEffect.MaxGhosts );
+							bloom.LensFlareInstance.LensFlareGhostAmount = EditorGUILayout.IntSlider( m_lensFlareGhostAmountGC, bloom.LensFlareInstance.LensFlareGhostAmount, 0, AmplifyBloom.MaxGhosts );
 							bloom.LensFlareInstance.LensFlareGhostsDispersal = EditorGUILayout.Slider( m_lensFlareGhostDispersalGC, bloom.LensFlareInstance.LensFlareGhostsDispersal, 0.01f, 1.0f );
 							bloom.LensFlareInstance.LensFlareGhostChrDistortion = EditorGUILayout.Slider( m_lensFlareGhostChrmDistortGC, bloom.LensFlareInstance.LensFlareGhostChrDistortion, 0, 10 );
 							EditorGUI.indentLevel++;

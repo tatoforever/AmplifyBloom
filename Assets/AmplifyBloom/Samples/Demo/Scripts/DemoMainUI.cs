@@ -29,8 +29,9 @@ namespace AmplifyBloom
 		public Slider DownscaleAmountSlider;
 		public Slider IntensitySlider;
 		public Slider ThresholdSizeSlider;
-		private AmplifyBloomEffect _amplifyBloomEffect;
-		private Camera _camera;
+
+		private AmplifyBloom m_amplifyBloom;
+		private Camera m_camera;
 
 		private DemoUIElement[] m_uiElements;
 
@@ -43,29 +44,29 @@ namespace AmplifyBloom
 
 		void Awake()
 		{
-			_camera = Camera.main;
+			m_camera = Camera.main;
 		#if UNITY_EDITOR
 			if ( PlayerSettings.colorSpace == ColorSpace.Gamma )
 			{
 				Debug.LogWarning("Detected Gamma Color Space. For better visual results please switch to Linear Color Space by going to Player Settings > Other Settings > Rendering Path > Color Space > Linear.");
 			}
 
-			if ( !_camera.allowHDR )
+			if ( !m_camera.allowHDR )
 			{
 				Debug.LogWarning( "Detected LDR on camera. For better visual results please switch to HDR by hitting the HDR toggle on the Camera component." );
 			}
 		#endif
-			_amplifyBloomEffect = _camera.GetComponent<AmplifyBloomEffect>();
+			m_amplifyBloom = m_camera.GetComponent<AmplifyBloom>();
 
-			BloomToggle.isOn = _amplifyBloomEffect.enabled;
-			HighPrecision.isOn = _amplifyBloomEffect.HighPrecision;
-			UpscaleType.isOn = (_amplifyBloomEffect.UpscaleQuality == UpscaleQualityEnum.Realistic);
-			TemporalFilter.isOn = _amplifyBloomEffect.TemporalFilteringActive;
-			BokehToggle.isOn = _amplifyBloomEffect.BokehFilterInstance.ApplyBokeh;
-			LensFlareToggle.isOn = _amplifyBloomEffect.LensFlareInstance.ApplyLensFlare;
-			LensGlareToggle.isOn = _amplifyBloomEffect.LensGlareInstance.ApplyLensGlare;
-			LensDirtToggle.isOn = _amplifyBloomEffect.ApplyLensDirt;
-			LensStarburstToggle.isOn = _amplifyBloomEffect.ApplyLensStardurst;
+			BloomToggle.isOn = m_amplifyBloom.enabled;
+			HighPrecision.isOn = m_amplifyBloom.HighPrecision;
+			UpscaleType.isOn = (m_amplifyBloom.UpscaleQuality == UpscaleQualityEnum.Realistic);
+			TemporalFilter.isOn = m_amplifyBloom.TemporalFilteringActive;
+			BokehToggle.isOn = m_amplifyBloom.BokehFilterInstance.ApplyBokeh;
+			LensFlareToggle.isOn = m_amplifyBloom.LensFlareInstance.ApplyLensFlare;
+			LensGlareToggle.isOn = m_amplifyBloom.LensGlareInstance.ApplyLensGlare;
+			LensDirtToggle.isOn = m_amplifyBloom.ApplyLensDirt;
+			LensStarburstToggle.isOn = m_amplifyBloom.ApplyLensStardurst;
 
 			BloomToggle.onValueChanged.AddListener( OnBloomToggle );
 			HighPrecision.onValueChanged.AddListener( OnHighPrecisionToggle );
@@ -77,16 +78,16 @@ namespace AmplifyBloom
 			LensDirtToggle.onValueChanged.AddListener( OnLensDirtToggle );
 			LensStarburstToggle.onValueChanged.AddListener( OnLensStarburstToggle );
 
-			ThresholdSlider.value = _amplifyBloomEffect.OverallThreshold;
+			ThresholdSlider.value = m_amplifyBloom.OverallThreshold;
 			ThresholdSlider.onValueChanged.AddListener( OnThresholdSlider );
 
-			DownscaleAmountSlider.value = _amplifyBloomEffect.BloomDownsampleCount;
+			DownscaleAmountSlider.value = m_amplifyBloom.BloomDownsampleCount;
 			DownscaleAmountSlider.onValueChanged.AddListener( OnDownscaleAmount );
 
-			IntensitySlider.value = _amplifyBloomEffect.OverallIntensity;
+			IntensitySlider.value = m_amplifyBloom.OverallIntensity;
 			IntensitySlider.onValueChanged.AddListener( OnIntensitySlider );
 
-			ThresholdSizeSlider.value = ( float ) _amplifyBloomEffect.MainThresholdSize;
+			ThresholdSizeSlider.value = ( float ) m_amplifyBloom.MainThresholdSize;
 			ThresholdSizeSlider.onValueChanged.AddListener( OnThresholdSize );
 
 			if ( Input.GetJoystickNames().Length > 0 )
@@ -119,63 +120,63 @@ namespace AmplifyBloom
 
 		public void OnThresholdSize( float selection )
 		{
-			_amplifyBloomEffect.MainThresholdSize = ( MainThresholdSizeEnum ) selection;
+			m_amplifyBloom.MainThresholdSize = ( MainThresholdSizeEnum ) selection;
 		}
 
 		public void OnThresholdSlider( float value )
 		{
-			_amplifyBloomEffect.OverallThreshold = value;
+			m_amplifyBloom.OverallThreshold = value;
 		}
 
 		public void OnDownscaleAmount( float value )
 		{
-			_amplifyBloomEffect.BloomDownsampleCount = ( int ) value;
+			m_amplifyBloom.BloomDownsampleCount = ( int ) value;
 		}
 
 		public void OnIntensitySlider( float value )
 		{
-			_amplifyBloomEffect.OverallIntensity = value;
+			m_amplifyBloom.OverallIntensity = value;
 		}
 
 		public void OnBloomToggle( bool value )
 		{
-			_amplifyBloomEffect.enabled = BloomToggle.isOn;
+			m_amplifyBloom.enabled = BloomToggle.isOn;
 		}
 
 		public void OnHighPrecisionToggle( bool value )
 		{
-			_amplifyBloomEffect.HighPrecision = value;
+			m_amplifyBloom.HighPrecision = value;
 		}
 
 		public void OnUpscaleTypeToogle( bool value )
 		{
-			_amplifyBloomEffect.UpscaleQuality = (value)? UpscaleQualityEnum.Realistic:UpscaleQualityEnum.Natural;
+			m_amplifyBloom.UpscaleQuality = (value)? UpscaleQualityEnum.Realistic:UpscaleQualityEnum.Natural;
 		}
 
 		public void OnTemporalFilterToggle( bool value )
 		{
-			_amplifyBloomEffect.TemporalFilteringActive = value;
+			m_amplifyBloom.TemporalFilteringActive = value;
 		}
 
 		public void OnBokehFilterToggle( bool value )
 		{
-			_amplifyBloomEffect.BokehFilterInstance.ApplyBokeh = BokehToggle.isOn;
+			m_amplifyBloom.BokehFilterInstance.ApplyBokeh = BokehToggle.isOn;
 		}
 		public void OnLensFlareToggle( bool value )
 		{
-			_amplifyBloomEffect.LensFlareInstance.ApplyLensFlare = LensFlareToggle.isOn;
+			m_amplifyBloom.LensFlareInstance.ApplyLensFlare = LensFlareToggle.isOn;
 		}
 		public void OnLensGlareToggle( bool value )
 		{
-			_amplifyBloomEffect.LensGlareInstance.ApplyLensGlare = LensGlareToggle.isOn;
+			m_amplifyBloom.LensGlareInstance.ApplyLensGlare = LensGlareToggle.isOn;
 		}
 		public void OnLensDirtToggle( bool value )
 		{
-			_amplifyBloomEffect.ApplyLensDirt = LensDirtToggle.isOn;
+			m_amplifyBloom.ApplyLensDirt = LensDirtToggle.isOn;
 		}
 		public void OnLensStarburstToggle( bool value )
 		{
-			_amplifyBloomEffect.ApplyLensStardurst = LensStarburstToggle.isOn;
+			m_amplifyBloom.ApplyLensStardurst = LensStarburstToggle.isOn;
 		}
 
 		public void OnQuitButton()
@@ -227,12 +228,12 @@ namespace AmplifyBloom
 
 			if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
 			{
-				_camera.orthographic = !_camera.orthographic;
+				m_camera.orthographic = !m_camera.orthographic;
 			}
 
 			if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
 			{
-				_amplifyBloomEffect.enabled = BloomToggle.isOn = !BloomToggle.isOn;
+				m_amplifyBloom.enabled = BloomToggle.isOn = !BloomToggle.isOn;
 			}
 
 
@@ -253,27 +254,27 @@ namespace AmplifyBloom
 			{
 				if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
 				{
-					_amplifyBloomEffect.BokehFilterInstance.ApplyBokeh = BokehToggle.isOn = !BokehToggle.isOn;
+					m_amplifyBloom.BokehFilterInstance.ApplyBokeh = BokehToggle.isOn = !BokehToggle.isOn;
 				}
 
 				if ( Input.GetKeyDown( KeyCode.Alpha3 ) )
 				{
-					_amplifyBloomEffect.LensFlareInstance.ApplyLensFlare = LensFlareToggle.isOn = !LensFlareToggle.isOn;
+					m_amplifyBloom.LensFlareInstance.ApplyLensFlare = LensFlareToggle.isOn = !LensFlareToggle.isOn;
 				}
 
 				if ( Input.GetKeyDown( KeyCode.Alpha4 ) )
 				{
-					_amplifyBloomEffect.LensGlareInstance.ApplyLensGlare = LensGlareToggle.isOn = !LensGlareToggle.isOn;
+					m_amplifyBloom.LensGlareInstance.ApplyLensGlare = LensGlareToggle.isOn = !LensGlareToggle.isOn;
 				}
 
 				if ( Input.GetKeyDown( KeyCode.Alpha5 ) )
 				{
-					_amplifyBloomEffect.ApplyLensDirt = LensDirtToggle.isOn = !LensDirtToggle.isOn;
+					m_amplifyBloom.ApplyLensDirt = LensDirtToggle.isOn = !LensDirtToggle.isOn;
 				}
 
 				if ( Input.GetKeyDown( KeyCode.Alpha6 ) )
 				{
-					_amplifyBloomEffect.ApplyLensStardurst = LensStarburstToggle.isOn = !LensStarburstToggle.isOn;
+					m_amplifyBloom.ApplyLensStardurst = LensStarburstToggle.isOn = !LensStarburstToggle.isOn;
 				}
 			}
 		}
