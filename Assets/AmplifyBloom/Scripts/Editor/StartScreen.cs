@@ -27,19 +27,39 @@ namespace AmplifyBloom
 		}
 
 		private static readonly string RefID = "Ref_Bloom";
+		public static readonly string[] Titles = {
+					"Amplify Shader Editor",
+					"Amplify Impostors",
+					"Amplify Occlusion",
+					"Amplify Bloom",
+					"Amplify Color",
+					"Amplify LUT Pack",
+					"Fake Interiors FREE",
+					"FXAA",
+				};
+		public static readonly string[] Urls = {
+					"https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/tools/utilities/amplify-impostors-119877?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-occlusion-56739?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-bloom-53299?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-color-1894?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-lut-pack-50070?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fake-interiors-free-104029?aid=1011lPwI&pubref=",
+					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/fxaa-fast-approximate-anti-aliasing-3590?aid=1011lPwI&pubref=",
+				};
 
 		private static readonly string IconGUID = "0d54aef07ec9d32459aeed3f1b8eea6d";
 		private static readonly string BannerGUID = "9e478a7ad1269ab4aad7f8550a7af836";
 
-		public static readonly string BannerInfoURL = "http://amplify.pt/Banner/ABInfo.json";
-		public static readonly string PackageRefURL = "http://amplify.pt/Banner/PackageRef.json";
+		public static readonly string BannerInfoURL = "https://amplify.pt/Banner/ABInfo.json";
+		public static readonly string PackageRefURL = "https://amplify.pt/Banner/PackageRef.json";
 
-		private static readonly string WikiURL = "http://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Bloom";
+		private static readonly string WikiURL = "https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Bloom";
 
 		private static readonly string DiscordURL = "https://discordapp.com/invite/EdrVAP5";
 		private static readonly string ForumURL = "https://discussions.unity.com/t/updated-introducing-amplify-bloom-industry-level-post-process-bloom/615623";
 
-		private static readonly string SiteURL = "http://amplify.pt/download/";
+		private static readonly string SiteURL = "https://amplify.pt/download/";
 		private static readonly string StoreURL = "https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-bloom-53299?aid=1011lPwI&pubref=" + RefID;
 
 		private static readonly GUIContent ResourcesTitle = new GUIContent( "Learning Resources" );
@@ -70,7 +90,7 @@ namespace AmplifyBloom
 		GUIStyle m_linkStyle = null;
 
 		Texture2D m_newsImage = null;
-		private BannerInfo m_bannerInfo;
+		private Info m_bannerInfo;
 		private PackageRef m_packageRef;
 		private bool m_infoDownloaded = false;
 		private string m_newVersion = string.Empty;
@@ -106,32 +126,12 @@ namespace AmplifyBloom
 
 			if( m_bannerInfo == null )
 			{
-				m_bannerInfo = new BannerInfo( VersionInfo.FullNumber, "05/05/2020 12:00:00", "Thank you for trying our products!\n\nWe invite you to learn more about our range of Unity solutions and our many learning resources available via our official Wiki. Be sure to join our growing Discord community, it's a great place to ask quick questions and interact with Amplify users and developers.", "", "https://assetstore.unity.com/publishers/707?aid=1011lPwI&pubref=" + RefID );
+				m_bannerInfo = new Info( VersionInfo.FullNumber, "05/05/2020 12:00:00", "Thank you for trying our products!\n\nWe invite you to learn more about our range of Unity solutions and our many learning resources available via our official Wiki. Be sure to join our growing Discord community, it's a great place to ask quick questions and interact with Amplify users and developers.", "", "https://assetstore.unity.com/publishers/707?aid=1011lPwI&pubref=" + RefID );
 			}
 
 			if( m_packageRef == null )
 			{
-				string[] titles = {
-					"Amplify Shader Editor",
-					"Amplify Impostors",
-					"Amplify Occlusion",
-					"Amplify Bloom",
-					"Amplify Color",
-					"Amplify LUT Pack",
-					"Fake Interiors FREE",
-					"FXAA",
-				};
-				string[] urls = {
-					"https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/tools/utilities/amplify-impostors-119877?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-occlusion-56739?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-bloom-53299?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-color-1894?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-lut-pack-50070?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fake-interiors-free-104029?aid=1011lPwI&pubref=",
-					"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/fxaa-fast-approximate-anti-aliasing-3590?aid=1011lPwI&pubref=",
-				};
-				m_packageRef = new PackageRef( titles, urls );
+				m_packageRef = new PackageRef( Titles, Urls );
 			}
 
 			if( Icon == null )
@@ -169,7 +169,7 @@ namespace AmplifyBloom
 				// get banner information and texture
 				StartBackgroundTask( StartRequest( BannerInfoURL, ( www ) =>
 				{
-					BannerInfo info = BannerInfo.CreateFromJSON( www.downloadHandler.text );
+					Info info = Info.CreateFromJSON( www.downloadHandler.text );
 					if( info != null && !string.IsNullOrEmpty( info.ImageUrl ) )
 					{
 						StartBackgroundTask( StartTextureRequest( info.ImageUrl, ( www2 ) =>
@@ -359,11 +359,7 @@ namespace AmplifyBloom
 		{
 			using( var www = UnityWebRequest.Get( url ) )
 			{
-#if UNITY_2017_2_OR_NEWER
 				yield return www.SendWebRequest();
-#else
-				yield return www.Send();
-#endif
 
 				while( www.isDone == false )
 					yield return null;
@@ -377,11 +373,7 @@ namespace AmplifyBloom
 		{
 			using( UnityWebRequest www = UnityWebRequestTexture.GetTexture( url ) )
 			{
-#if UNITY_2017_2_OR_NEWER
 				yield return www.SendWebRequest();
-#else
-				yield return www.Send();
-#endif
 
 				while( www.isDone == false )
 					yield return null;
@@ -420,7 +412,7 @@ namespace AmplifyBloom
 	}
 
 	[Serializable]
-	internal class BannerInfo
+	internal class Info
 	{
 		public int Version;
 		public string ShowBefore;
@@ -428,12 +420,12 @@ namespace AmplifyBloom
 		public string ImageUrl;
 		public string LinkUrl;
 
-		public static BannerInfo CreateFromJSON( string jsonString )
+		public static Info CreateFromJSON( string jsonString )
 		{
-			return JsonUtility.FromJson<BannerInfo>( jsonString );
+			return JsonUtility.FromJson<Info>( jsonString );
 		}
 
-		public BannerInfo( int version, string showBefore, string newsText, string imageUrl, string linkUrl )
+		public Info( int version, string showBefore, string newsText, string imageUrl, string linkUrl )
 		{
 			Version = version;
 			ShowBefore = showBefore;
@@ -506,7 +498,7 @@ namespace AmplifyBloom
 						{
 							StartScreen.StartBackgroundTask( StartScreen.StartRequest( StartScreen.BannerInfoURL, ( www ) =>
 							{
-								BannerInfo info = BannerInfo.CreateFromJSON( www.downloadHandler.text );
+								Info info = Info.CreateFromJSON( www.downloadHandler.text );
 								if( info != null )
 								{
 									if( DateTime.Now < DateTime.Parse( info.ShowBefore ) && !EditorPrefs.GetBool( Preferences.PrefForceUpdate, false ) )
